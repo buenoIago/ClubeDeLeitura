@@ -1,7 +1,10 @@
 ﻿using ClubeDeLeitura.ConsoleApp.Apresentacao;
 using ClubeDeLeitura.ConsoleApp.Dominio;
+using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
-TelaCaixa telaCaixa = new TelaCaixa();
+RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+
+TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
 
 while (true)
 {
