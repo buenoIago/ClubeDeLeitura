@@ -1,4 +1,9 @@
-﻿while (true)
+﻿using ClubeDeLeitura.ConsoleApp.Apresentacao;
+using ClubeDeLeitura.ConsoleApp.Dominio;
+
+TelaCaixa telaCaixa = new TelaCaixa();
+
+while (true)
 {
     Console.Clear();
     Console.WriteLine("---------------------------------");
@@ -25,7 +30,25 @@
 
         if (opcaoMenuPrincipal == "1")
         {
+            opcaoMenuInterno = telaCaixa.ObterOpcaoMenu();
 
+            if(opcaoMenuInterno == "S")
+            {
+                Console.Clear();
+            break;
+            }
+
+            if(opcaoMenuInterno == "1")
+                telaCaixa.Cadastrar();
+
+            else if (opcaoMenuInterno == "2")
+                telaCaixa.Editar();
+
+            else if (opcaoMenuInterno == "3")
+                telaCaixa.Excluir();
+
+            else if (opcaoMenuInterno == "4")
+                telaCaixa.VizualizarTodos();
         }
 
         else if (opcaoMenuPrincipal == "2")
