@@ -1,3 +1,4 @@
+using System.Diagnostics.Contracts;
 using System.Net.Http.Headers;
 using ClubeDeLeitura.ConsoleApp.Dominio;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
@@ -46,25 +47,7 @@ public class TelaCaixa
         ExibirCabecalho("Edição de caixa");
 
         // Seleção da caixa que quero editar
-        Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
-            "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
-        );
-
-        Caixa?[] caixas = repositorioCaixa.SelecionarTodas();
-
-        for (int i = 0; i <  caixas.Length; i++)
-        {
-            Caixa? c = caixas[i];
-
-            if (c == null)
-                continue;
-
-            Console.WriteLine(
-                "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
-                c.Id, c.Etiqueta, c.Cor, c.DiasDeEmprestimo
-            );
-        }
+        VizualizarTodos(deveExibirCabecalho: false);
 
         Console.WriteLine("---------------------------------");
 
@@ -95,21 +78,78 @@ public class TelaCaixa
             Console.ReadLine();
         }
 
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Não foi possível encontrar o registro requisitado.");
-        Console.WriteLine("---------------------------------");
-        Console.WriteLine("Digite ENTER para continuar...");
-        Console.ReadLine();
+        Mensagem($"O registro \"{idSelecionado}\" foi editado com sucesso!");
+
     }
 
     public void Excluir()
     {
         ExibirCabecalho("Exclusão de caixa");
+
+        VizualizarTodos(deveExibirCabecalho: false);
+
+        Console.WriteLine("---------------------------------");
+
+        string? idSelecionado;
+
+        do
+        {
+            Console.Write("Informe o ID do registro que deseja editar: ");
+            idSelecionado = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+                break;
+        } while (true);
+
+        Console.WriteLine("---------------------------------");
+
+        bool ConseguiuEditar = repositorioCaixa.Excluir(idSelecionado);
+
+        if (!ConseguiuEditar)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Não foi possível encontrar o registro requisitado.");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }
+
+        Mensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
     }
 
-    public void VizualizarTodos()
+    public void VizualizarTodos(bool deveExibirCabecalho)
     {
-        ExibirCabecalho("Vizualizar caixas");
+        if(deveExibirCabecalho)
+            ExibirCabecalho("Vizualizar caixas");
+
+        Console.WriteLine(
+            "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
+            "Id", "Etiqueta", "Cor", "Tempo de Empréstimo"
+        );
+
+        Caixa?[] caixas = repositorioCaixa.SelecionarTodas();
+
+        for (int i = 0; i <  caixas.Length; i++)
+        {
+            Caixa? c = caixas[i];
+
+            if (c == null)
+                continue;
+
+            Console.WriteLine(
+                "{0, -7} | {1, -20} | {2, -10} | {3, -20}",
+                c.Id, c.Etiqueta, c.Cor, c.DiasDeEmprestimo
+            );
+        }
+
+        Console.WriteLine("---------------------------------");
+
+        if(deveExibirCabecalho)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }
     }
     
     public void ExibirCabecalho(string titulo)

@@ -48,4 +48,25 @@ public class RepositorioCaixa
 
         return true;
     }
+
+    public bool Excluir(string idSelecionado)
+    {
+        Caixa? caixaSelecionada = null;
+
+        for (int i = 0; i < caixas.Length; i++)
+        {
+            Caixa? c = caixas[i];
+            
+            if (c == null)
+                continue;
+
+            if (c.Id == idSelecionado)
+            {
+                caixaSelecionada = c;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
