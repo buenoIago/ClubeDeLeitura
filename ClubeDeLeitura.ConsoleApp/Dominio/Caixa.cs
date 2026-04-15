@@ -22,9 +22,15 @@ public class Caixa
                 .ToHexString(RandomNumberGenerator.GetBytes(20))
                 .ToLower()
                 .Substring(0, 7);
-                
+
         Etiqueta = etiqueta;
         Cor = cor;
         DiasDeEmprestimo = diasDeEmprestimo;
+    }
+    public void AtualizarRegistro(Caixa caixaAtualizada)
+    {
+        Etiqueta = caixaAtualizada.Etiqueta;
+        Cor = caixaAtualizada.Cor;
+        DiasDeEmprestimo = caixaAtualizada.DiasDeEmprestimo;
     }
 }
