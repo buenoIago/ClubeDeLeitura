@@ -13,7 +13,7 @@ public class TelaCaixa
     {
         repositorioCaixa = rC;
     }
-    public string? ObterOpcaoMenu()
+    private string? ObterOpcaoMenu()
     {
     Console.Clear();
     Console.WriteLine("---------------------------------");
@@ -31,7 +31,7 @@ public class TelaCaixa
     return opcaoMenu;
     }
 
-    public void Cadastrar()
+    private void Cadastrar()
     {
         ExibirCabecalho("Cadastro de caixa");
 
@@ -42,7 +42,7 @@ public class TelaCaixa
         Mensagem($"O registro \"{novaCaixa.Id}\" foi cadastrado com sucesso!");
     }
 
-    public void Editar()
+    private void Editar()
     {
         ExibirCabecalho("Edição de caixa");
 
@@ -82,7 +82,7 @@ public class TelaCaixa
 
     }
 
-    public void Excluir()
+    private void Excluir()
     {
         ExibirCabecalho("Exclusão de caixa");
 
@@ -117,7 +117,7 @@ public class TelaCaixa
         Mensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
     }
 
-    public void VizualizarTodos(bool deveExibirCabecalho)
+    private void VizualizarTodos(bool deveExibirCabecalho)
     {
         if(deveExibirCabecalho)
             ExibirCabecalho("Vizualizar caixas");
@@ -152,7 +152,7 @@ public class TelaCaixa
         }
     }
     
-    public void ExibirCabecalho(string titulo)
+    private void ExibirCabecalho(string titulo)
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -160,7 +160,7 @@ public class TelaCaixa
         Console.WriteLine("---------------------------------");
     }
 
-    public void Mensagem(string mensagem)
+    private void Mensagem(string mensagem)
     {
         Console.WriteLine("---------------------------------");
         Console.WriteLine(mensagem);
