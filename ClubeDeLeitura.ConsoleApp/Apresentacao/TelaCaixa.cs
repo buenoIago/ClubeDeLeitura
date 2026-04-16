@@ -13,7 +13,7 @@ public class TelaCaixa
     {
         repositorioCaixa = rC;
     }
-    private string? ObterOpcaoMenu()
+    public string? ObterOpcaoMenu()
     {
     Console.Clear();
     Console.WriteLine("---------------------------------");
@@ -31,18 +31,38 @@ public class TelaCaixa
     return opcaoMenu;
     }
 
-    private void Cadastrar()
+    public void Cadastrar()
     {
         ExibirCabecalho("Cadastro de caixa");
 
         Caixa novaCaixa = ObterDadosCadastrais();
 
+        string[] erros = novaCaixa.Validar();
+
+        if (erros.Length > 0)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            for (int i = 0; i < erros.Length; i++)
+            {
+                string erro = erros[i];
+                System.Console.WriteLine(erro);
+            }
+
+            Console.ResetColor();
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Digite ENTER para continuar...");
+            Console.ReadLine();
+        
+            Cadastrar();
+            return;
+        }
+
         repositorioCaixa.Cadastrar(novaCaixa);
 
-        Mensagem($"O registro \"{novaCaixa.Id}\" foi cadastrado com sucesso!");
+        ExibirMensagem($"O registro \"{novaCaixa.Id}\" foi cadastrado com sucesso!");
     }
 
-    private void Editar()
+    public void Editar()
     {
         ExibirCabecalho("Edição de caixa");
 
@@ -78,11 +98,11 @@ public class TelaCaixa
             Console.ReadLine();
         }
 
-        Mensagem($"O registro \"{idSelecionado}\" foi editado com sucesso!");
+        ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso!");
 
     }
 
-    private void Excluir()
+    public void Excluir()
     {
         ExibirCabecalho("Exclusão de caixa");
 
@@ -114,10 +134,10 @@ public class TelaCaixa
             Console.ReadLine();
         }
 
-        Mensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
+        ExibirMensagem($"O registro \"{idSelecionado}\" foi excluído com sucesso!");
     }
 
-    private void VizualizarTodos(bool deveExibirCabecalho)
+    public void VizualizarTodos(bool deveExibirCabecalho)
     {
         if(deveExibirCabecalho)
             ExibirCabecalho("Vizualizar caixas");
@@ -142,8 +162,6 @@ public class TelaCaixa
             );
         }
 
-        Console.WriteLine("---------------------------------");
-
         if(deveExibirCabecalho)
         {
             Console.WriteLine("---------------------------------");
@@ -160,7 +178,7 @@ public class TelaCaixa
         Console.WriteLine("---------------------------------");
     }
 
-    private void Mensagem(string mensagem)
+    private void ExibirMensagem(string mensagem)
     {
         Console.WriteLine("---------------------------------");
         Console.WriteLine(mensagem);
