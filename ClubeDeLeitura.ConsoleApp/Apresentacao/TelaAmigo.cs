@@ -30,21 +30,21 @@ public class TelaAmigos
 
     public void Cadastrar()
     {
-        throw new NotImplementedException();
+       
     }
 
     public void Editar()
     {
-        throw new NotImplementedException();
+        
     }
 
     public void Excluir()
     {
-        throw new NotImplementedException();
+        
     }
 
     public bool VisualizarTodos(bool deveExibirCabecalho)
     {
-        throw new NotImplementedException();
+        
     }
 }
