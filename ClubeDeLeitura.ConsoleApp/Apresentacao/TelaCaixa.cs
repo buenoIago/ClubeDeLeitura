@@ -78,7 +78,7 @@ public class TelaCaixa
             Console.Write("Informe o ID do registro que deseja editar: ");
             idSelecionado = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
                 break;
         } while (true);
 
