@@ -75,6 +75,39 @@ public class TelaRevista
 
     public void Editar()
     {
+        ExibirCabecalho("Edição de caixa");
+
+        VisualizarTodos(deveExibirCabecalho: false);
+
+        Console.WriteLine("---------------------------------");
+
+        string? idSelecionado;
+
+        do
+        {
+            Console.Write("Informe o ID da revista que deseja editar: ");
+            idSelecionado = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+                break;
+        } while (true);
+
+        Console.WriteLine("---------------------------------");
+
+        Revista novaRevista = ObterDadosCadastrais();
+
+        bool ConseguiuEditar = repositorioRevista.Editar(idSelecionado, novaRevista);
+
+        if (!ConseguiuEditar)
+        {
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Não foi possível encontrar o registro requisitado.");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Digite ENTER para continuar...");
+            Console.ReadLine();
+        }
+
+        ExibirMensagem($"O registro \"{idSelecionado}\" foi editado com sucesso!");
 
     }
 
