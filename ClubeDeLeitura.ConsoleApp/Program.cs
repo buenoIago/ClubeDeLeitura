@@ -3,11 +3,16 @@ using ClubeDeLeitura.ConsoleApp.Dominio;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
+RepositorioRevista repositorioRevista = new RepositorioRevista();
 
 TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
+TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
 
-Caixa caixa = new Caixa("Lançamento", "Vermelho", 3);
+Caixa caixa = new Caixa("Lançamentos", "Vermelho", 3);
 repositorioCaixa.Cadastrar(caixa);
+
+Revista revista = new Revista("Action Comics", 155, 1990, caixa);
+repositorioRevista.Cadastrar(revista);
 
 while (true)
 {
@@ -34,17 +39,17 @@ while (true)
     {
         string? opcaoMenuInterno = string.Empty;
 
-        if (opcaoMenuPrincipal == "1")
+        if (opcaoMenuPrincipal == "1") // Caixas
         {
             opcaoMenuInterno = telaCaixa.ObterOpcaoMenu();
 
-            if(opcaoMenuInterno == "S")
+            if (opcaoMenuInterno == "S")
             {
                 Console.Clear();
-            break;
+                break;
             }
 
-            if(opcaoMenuInterno == "1")
+            if (opcaoMenuInterno == "1")
                 telaCaixa.Cadastrar();
 
             else if (opcaoMenuInterno == "2")
@@ -57,9 +62,27 @@ while (true)
                 telaCaixa.VizualizarTodos(deveExibirCabecalho: true);
         }
 
-        else if (opcaoMenuPrincipal == "2")
+        else if (opcaoMenuPrincipal == "2") // Revistas
         {
+            opcaoMenuInterno = telaRevista.ObterOpcaoMenu();
 
+            if (opcaoMenuInterno == "S")
+            {
+                Console.Clear();
+                break;
+            }
+
+            if (opcaoMenuInterno == "1")
+                telaRevista.Cadastrar();
+
+            else if (opcaoMenuInterno == "2")
+                telaRevista.Editar();
+
+            else if (opcaoMenuInterno == "3")
+                telaRevista.Excluir();
+
+            else if (opcaoMenuInterno == "4")
+                telaRevista.VisualizarTodos(deveExibirCabecalho: true);
         }
 
         else if (opcaoMenuPrincipal == "3")
