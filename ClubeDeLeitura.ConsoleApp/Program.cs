@@ -4,10 +4,11 @@ using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
 RepositorioRevista repositorioRevista = new RepositorioRevista();
+RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
 
 TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
 TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
-TelaAmigos telaAmigos = new TelaAmigos();
+TelaAmigos telaAmigos = new TelaAmigos(repositorioAmigo);
 
 Caixa caixa = new Caixa("Lançamentos", "Vermelho", 3);
 repositorioCaixa.Cadastrar(caixa);
