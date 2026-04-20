@@ -1,6 +1,7 @@
 using System.Dynamic;
 using System.Security.Cryptography;
 using ClubeDeLeitura.ConsoleApp.Apresentacao;
+using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 
 namespace ClubeDeLeitura.ConsoleApp.Dominio;
 

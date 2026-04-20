@@ -1,7 +1,7 @@
 using System;
-using ClubeDeLeitura.ConsoleApp.Dominio;
+using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 
-namespace ClubeDeLeitura.ConsoleApp.Infraestrutura;
+namespace ClubeDeLeitura.ConsoleApp.Infraestrutura.Base;
 
 public class RepositorioBase
 {

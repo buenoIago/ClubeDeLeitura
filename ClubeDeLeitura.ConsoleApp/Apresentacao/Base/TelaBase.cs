@@ -1,10 +1,10 @@
 using System;
-using ClubeDeLeitura.ConsoleApp.Dominio;
-using ClubeDeLeitura.ConsoleApp.Infraestrutura;
+using ClubeDeLeitura.ConsoleApp.Dominio.Base;
+using ClubeDeLeitura.ConsoleApp.Infraestrutura.Base;
 
-namespace ClubeDeLeitura.ConsoleApp.Apresentacao;
+namespace ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
 
-public class TelaBase
+public abstract class TelaBase
 {
  public string nomeEntidade = string.Empty;
     private RepositorioBase repositorio;

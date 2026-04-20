@@ -1,6 +1,8 @@
 using System;
 using System.IO.Pipes;
+using ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
 using ClubeDeLeitura.ConsoleApp.Dominio;
+using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 namespace ClubeDeLeitura.ConsoleApp.Apresentacao;

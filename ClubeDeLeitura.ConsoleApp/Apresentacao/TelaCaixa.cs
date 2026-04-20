@@ -1,6 +1,8 @@
 using System.Diagnostics.Contracts;
 using System.Net.Http.Headers;
+using ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
 using ClubeDeLeitura.ConsoleApp.Dominio;
+using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 namespace ClubeDeLeitura.ConsoleApp.Apresentacao;

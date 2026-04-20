@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography;
 
-namespace ClubeDeLeitura.ConsoleApp.Dominio;
+namespace ClubeDeLeitura.ConsoleApp.Dominio.Base;
 
 // classe abstrata = não pode ser instânciada
 // só vai **DEFINIR** comportamentos e propriedades dentro do sistema
