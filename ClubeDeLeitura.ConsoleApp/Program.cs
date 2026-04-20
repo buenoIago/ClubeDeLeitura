@@ -4,23 +4,15 @@ using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 RepositorioCaixa repositorioCaixa = new RepositorioCaixa();
 RepositorioRevista repositorioRevista = new RepositorioRevista();
-RepositorioAmigo repositorioAmigo = new RepositorioAmigo();
 
 TelaCaixa telaCaixa = new TelaCaixa(repositorioCaixa);
 TelaRevista telaRevista = new TelaRevista(repositorioRevista, repositorioCaixa);
-TelaAmigos telaAmigos = new TelaAmigos(repositorioAmigo);
 
 Caixa caixa = new Caixa("Lançamentos", "Vermelho", 3);
 repositorioCaixa.Cadastrar(caixa);
 
 Revista revista = new Revista("Action Comics", 155, 1990, caixa);
 repositorioRevista.Cadastrar(revista);
-
-EntidadeBase entidade = caixa;
-entidade = revista;
-
-entidade.Validar();
-entidade.AtualizarRegistro();
 
 while (true)
 {
@@ -67,7 +59,7 @@ while (true)
                 telaCaixa.Excluir();
 
             else if (opcaoMenuInterno == "4")
-                telaCaixa.VizualizarTodos(deveExibirCabecalho: true);
+                telaCaixa.VisualizarTodos(deveExibirCabecalho: true);
         }
 
         else if (opcaoMenuPrincipal == "2") // Revistas
@@ -93,28 +85,28 @@ while (true)
                 telaRevista.VisualizarTodos(deveExibirCabecalho: true);
         }
 
-        else if (opcaoMenuPrincipal == "3")
-        {
-            opcaoMenuInterno = telaAmigos.ObterOpcaoMenu();
+        // else if (opcaoMenuPrincipal == "3")
+        // {
+        //     opcaoMenuInterno = telaAmigos.ObterOpcaoMenu();
 
-            if (opcaoMenuInterno == "S")
-            {
-                Console.Clear();
-                break;
-            }
+        //     if (opcaoMenuInterno == "S")
+        //     {
+        //         Console.Clear();
+        //         break;
+        //     }
 
-            if (opcaoMenuInterno == "1")
-                telaAmigos.Cadastrar();
+        //     if (opcaoMenuInterno == "1")
+        //         telaAmigos.Cadastrar();
 
-            else if (opcaoMenuInterno == "2")
-                telaAmigos.Editar();
+        //     else if (opcaoMenuInterno == "2")
+        //         telaAmigos.Editar();
 
-            else if (opcaoMenuInterno == "3")
-                telaAmigos.Excluir();
+        //     else if (opcaoMenuInterno == "3")
+        //         telaAmigos.Excluir();
 
-            else if (opcaoMenuInterno == "4")
-                telaAmigos.VisualizarTodos(deveExibirCabecalho: true);
-        }
+        //     else if (opcaoMenuInterno == "4")
+        //         telaAmigos.VisualizarTodos(deveExibirCabecalho: true);
+        // }
 
         else if (opcaoMenuPrincipal == "4")
         {

@@ -4,25 +4,22 @@ using ClubeDeLeitura.ConsoleApp.Apresentacao;
 
 namespace ClubeDeLeitura.ConsoleApp.Dominio;
 
-
-
 public class Caixa : EntidadeBase
 {
-    // public string etiqueta; // atributo
-    public string Etiqueta {get; set;} = string.Empty; //propriedade
-    public string Cor {get; set;} = string.Empty; //propriedade
-    public int DiasDeEmprestimo {get; set;} = 7; //propriedade
+    public string Etiqueta { get; set; } = string.Empty;
+    public string Cor { get; set; } = string.Empty;
+    public int DiasDeEmprestimo { get; set; } = 7;
 
     // construtor de classe
     // toda instância que for criada PRECISA dessas informações
-    public Caixa(string etiqueta, string cor, int diasDeEmprestimo) 
+    public Caixa(string etiqueta, string cor, int diasDeEmprestimo)
     {
         Etiqueta = etiqueta;
         Cor = cor;
         DiasDeEmprestimo = diasDeEmprestimo;
     }
 
-    public string[] Validar()
+    public override string[] Validar()
     {
         string erros = string.Empty;
 
@@ -41,13 +38,15 @@ public class Caixa : EntidadeBase
             erros += "O campo \"Dias de Empréstimo\" deve conter um valor maior que 0;";
         }
 
-        //separar (toda vez que ele encontra o caractere digitado separa o array)
-        return erros.Split(';', StringSplitOptions.RemoveEmptyEntries); 
-        
+        return erros.Split(';', StringSplitOptions.RemoveEmptyEntries); // separar
     }
 
-    public void AtualizarRegistro(Caixa caixaAtualizada)
+    // substituição = implementação do método abstração
+    public override void AtualizarRegistro(EntidadeBase entidadeAtualizada)
     {
+        // (Caixa) = confia
+        Caixa caixaAtualizada = (Caixa)entidadeAtualizada; // cast / conversão de tipo
+
         Etiqueta = caixaAtualizada.Etiqueta;
         Cor = caixaAtualizada.Cor;
         DiasDeEmprestimo = caixaAtualizada.DiasDeEmprestimo;

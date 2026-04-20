@@ -18,7 +18,7 @@ public class Revista : EntidadeBase
         Caixa = caixa;
     }
 
-    public string[] Validar()
+    public override string[] Validar()
     {
         string erros = string.Empty;
 
@@ -42,11 +42,13 @@ public class Revista : EntidadeBase
         return erros.Split(';', StringSplitOptions.RemoveEmptyEntries);
     }
 
-    public void AtualizarRegistro(Revista novaRevista)
+    public override void AtualizarRegistro(EntidadeBase entidadeAtualizada)
     {
-        Titulo = novaRevista.Titulo;
-        NumeroEdicao = novaRevista.NumeroEdicao;
-        AnoPublicacao = novaRevista.AnoPublicacao;
-        Caixa = novaRevista.Caixa;
+        Revista revistaAtualizada = (Revista)entidadeAtualizada;
+
+        Titulo = revistaAtualizada.Titulo;
+        NumeroEdicao = revistaAtualizada.NumeroEdicao;
+        AnoPublicacao = revistaAtualizada.AnoPublicacao;
+        Caixa = revistaAtualizada.Caixa;
     }
 }
