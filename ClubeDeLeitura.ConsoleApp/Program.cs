@@ -16,6 +16,12 @@ repositorioCaixa.Cadastrar(caixa);
 Revista revista = new Revista("Action Comics", 155, 1990, caixa);
 repositorioRevista.Cadastrar(revista);
 
+EntidadeBase entidade = caixa;
+entidade = revista;
+
+entidade.Validar();
+entidade.AtualizarRegistro();
+
 while (true)
 {
     Console.Clear();
