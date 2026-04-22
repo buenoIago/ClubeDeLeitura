@@ -63,8 +63,8 @@ public class Amigo : EntidadeBase
     {
         Amigo amigoAtualizado = (Amigo)entidadeAtualizada;
         
-        Nome = amigoAtualizado.nome;
-        NomeResponsavel = amigoAtualizado.nomeResponsavel;
-        Telefone = amigoAtualizado.telefone;
+        Nome = amigoAtualizado.Nome;
+        NomeResponsavel = amigoAtualizado.NomeResponsavel;
+        Telefone = amigoAtualizado.Telefone;
     }
 }
