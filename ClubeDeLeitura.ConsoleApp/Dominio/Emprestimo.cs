@@ -4,23 +4,41 @@ using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 
 namespace ClubeDeLeitura.ConsoleApp.Dominio;
 
-public class Emprestimo 
+public class Emprestimo
 {
-    public string Id {get; set;} = string.Empty;
-    public Revista Revista {get; set;}
-    public Amigo Amigo {get; set;}
-    public DateTime Abertura {get; set;} // 01/01/0001 00:00:00
-    public DateTime ConclusaoPrevista {get; set;}
-    public StatusEmprestimo Status {get; set;} = StatusEmprestimo.Indefinido;
+    public string Id { get; set; } = string.Empty;
+    public Revista Revista { get; set; }
+    public Amigo Amigo { get; set; }
+    public StatusEmprestimo Status { get; set; }
+    public DateTime Abertura { get; set; }
+    public DateTime ConclusaoPrevista
+    {
+        get
+        {
+            int diasDeEmprestimo = Revista.Caixa.DiasDeEmprestimo;
+
+            DateTime conclusao = Abertura.AddDays(diasDeEmprestimo);
+
+            return conclusao;
+        }
+    }
+
+    public bool EstaAtrasado
+    {
+        get
+        {
+            return Status == StatusEmprestimo.Aberto && DateTime.Now > ConclusaoPrevista;
+        }
+    }
 
     public Emprestimo(Revista revista, Amigo amigo)
     {
         Id = Convert
                 .ToHexString(RandomNumberGenerator.GetBytes(20))
                 .ToLower()
-                .Substring(0, 7);   
+                .Substring(0, 7);
 
-        Revista = revista;    
+        Revista = revista;
         Amigo = amigo;
     }
 
@@ -29,11 +47,26 @@ public class Emprestimo
         string erros = string.Empty;
 
         if (Revista == null)
-            erros += "O campo \"Revista\" é obrigatório";
-        
+            erros = "O campo \"Revista\" deve ser preenchido;";
+
         if (Amigo == null)
-            erros += "O campo \"Amigo\" é obrigatório";
+            erros = "O campo \"Amigo\" deve ser preenchido;";
 
         return erros.Split(';', StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    public void Abrir()
+    {
+        Abertura = DateTime.Now;
+        Status = StatusEmprestimo.Aberto;
+
+        Revista.Emprestar();
+        Amigo.AdicionarEmprestimo(this);
+    }
+
+    public void Concluir()
+    {
+        Status = StatusEmprestimo.Concluido;
+        Revista.Devolver();
     }
 }
