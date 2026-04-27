@@ -1,5 +1,6 @@
 using System;
 using ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
+using ClubeDeLeitura.ConsoleApp.Dominio;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 namespace ClubeDeLeitura.ConsoleApp.Apresentacao;
@@ -25,21 +26,21 @@ public class TelaPrincipal
         this.repositorioEmprestimo = repositorioEmprestimo;
 
         //criação de dados teste
-        // caixa caixa = new Caixa("Lançamentos", "Vermelho", 3);
-        // repositorioCaixa.Cadastrar(caixa);
+        Caixa caixa = new Caixa("Lançamentos", "Vermelho", 3);
+        repositorioCaixa.Cadastrar(caixa);
 
-        // Revista revista = new Revista("Action Comics", 155, 1990, caixa);
-        // repositorioRevista.Cadastrar(revista);
+        Revista revista = new Revista("Action Comics", 155, 1990, caixa);
+        repositorioRevista.Cadastrar(revista);
 
-        // Amigo amigo = new Amigo("Marco", "Pedro Souza", "48 99991-8888");
-        // repositorioAmigo.Cadastrar(amigo);
+        Amigo amigo = new Amigo("Marco", "Pedro Souza", "48 99991-8888");
+        repositorioAmigo.Cadastrar(amigo);
 
-        // Emprestimo emprestimo = new Emprestimo(revista, amigo);
-        // emprestimo.Abrir();
-        // repositorioEmprestimo.Cadastrar(emprestimo);
+        Emprestimo emprestimo = new Emprestimo(revista, amigo);
+        emprestimo.Abrir();
+        repositorioEmprestimo.Cadastrar(emprestimo);
     }
 
-    public TelaBase? ApresentarMenuDeOpcoesPrincipal()
+    public ITela? ApresentarMenuDeOpcoesPrincipal()
     {
         Console.Clear();
         Console.WriteLine("---------------------------------");
@@ -62,6 +63,9 @@ public class TelaPrincipal
 
         if (opcaoMenuPrincipal == "3")
             return new TelaAmigo(repositorioAmigo);
+
+        if (opcaoMenuPrincipal == "4")
+            return new TelaEmprestimo(repositorioEmprestimo, repositorioRevista, repositorioAmigo);
 
         return null;
     }

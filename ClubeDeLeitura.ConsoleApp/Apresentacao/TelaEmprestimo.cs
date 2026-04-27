@@ -1,10 +1,11 @@
+using ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
 using ClubeDeLeitura.ConsoleApp.Dominio;
 using ClubeDeLeitura.ConsoleApp.Dominio.Base;
 using ClubeDeLeitura.ConsoleApp.Infraestrutura;
 
 namespace ClubeDeLeitura.ConsoleApp.Apresentacao;
 
-public class TelaEmprestimo
+public class TelaEmprestimo : ITela
 {
     private RepositorioEmprestimo repositorioEmprestimo;
     private RepositorioRevista repositorioRevista;
