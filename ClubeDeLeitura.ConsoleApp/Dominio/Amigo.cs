@@ -35,6 +35,7 @@ public class Amigo : EntidadeBase
 
         int contadorDigitos = 0;
         bool contemLetraOuSimbolo = false;
+        
         string telefoneEncurtado = Telefone.Replace("", "").Replace("-", "");
 
         for (int i = 0; i < Telefone.Length; i++)

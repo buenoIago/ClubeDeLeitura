@@ -6,7 +6,7 @@ namespace ClubeDeLeitura.ConsoleApp.Apresentacao.Base;
 
 public abstract class TelaBase : ITela
 {
- public string nomeEntidade = string.Empty;
+    public string nomeEntidade = string.Empty;
     private RepositorioBase repositorio;
 
     protected TelaBase(string nomeEntidade, RepositorioBase repositorio)

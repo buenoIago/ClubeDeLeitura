@@ -3,8 +3,6 @@ using System.Security.Cryptography;
 
 namespace ClubeDeLeitura.ConsoleApp.Dominio.Base;
 
-// classe abstrata = não pode ser instânciada
-// só vai **DEFINIR** comportamentos e propriedades dentro do sistema
 public abstract class EntidadeBase
 {
     public string Id { get; set; } = string.Empty;

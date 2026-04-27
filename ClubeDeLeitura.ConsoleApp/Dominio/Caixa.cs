@@ -39,14 +39,13 @@ public class Caixa : EntidadeBase
             erros += "O campo \"Dias de Empréstimo\" deve conter um valor maior que 0;";
         }
 
-        return erros.Split(';', StringSplitOptions.RemoveEmptyEntries); // separar
+        return erros.Split(';', StringSplitOptions.RemoveEmptyEntries);
     }
 
-    // substituição = implementação do método abstração
     public override void AtualizarRegistro(EntidadeBase entidadeAtualizada)
     {
         // (Caixa) = confia
-        Caixa caixaAtualizada = (Caixa)entidadeAtualizada; // cast / conversão de tipo
+        Caixa caixaAtualizada = (Caixa)entidadeAtualizada;
 
         Etiqueta = caixaAtualizada.Etiqueta;
         Cor = caixaAtualizada.Cor;

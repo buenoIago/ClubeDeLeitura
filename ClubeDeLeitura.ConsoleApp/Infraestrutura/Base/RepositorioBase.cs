@@ -5,7 +5,6 @@ namespace ClubeDeLeitura.ConsoleApp.Infraestrutura.Base;
 
 public class RepositorioBase
 {
-    // protected = visível para classes que herdam essa classe
     protected EntidadeBase?[] registros = new EntidadeBase[100];
 
     public void Cadastrar(EntidadeBase entidade)

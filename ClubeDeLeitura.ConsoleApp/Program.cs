@@ -73,7 +73,6 @@ while (true)
 
             else if (opcaoMenuInterno == "3")
                 telaEmprestimo.VisualizarTodos(deveExibirCabecalho: true);
-
         }
     }
 }
